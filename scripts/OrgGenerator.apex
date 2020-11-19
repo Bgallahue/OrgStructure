@@ -28,6 +28,8 @@ EvolveDataGenerator.createBasicSampleData();
 
 You are now done, feel free to delete this repo/folder. You should be cloning a new one each time you create a Dev Org (or if you want to just keep the same 
 repo and are comfortable diffing and merging changes then feel free to do so). The reason being is we might need to update the methods of EvolveDataGenerator or 
-another part of this process so that we keep it in line with Production and your Dev Org doesnt generate errors while you work in it
+another part of this process so that we keep it in line with Production and your Dev Org doesnt generate errors while you work in it.
+
+There is also some shortcut sObject creators (like is UnitTestFactory) in EvolveDataGenerator so feel free to use those and commit any that you might want to add to the Github repo
 
 
