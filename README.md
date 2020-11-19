@@ -2,7 +2,7 @@ This repo is designed to move data to your own personal Dev Org sandbox as well 
 
 # Necessary Programs to Install
 1. NPM (https://nodejs.org/en/) 
-   - This allows us to install and mangage packages. You can think of packages much like VS Code Extensions or applications you might download to your computer.
+   - This allows us to install and manage packages. You can think of packages much like VS Code Extensions or applications you might download to your computer.
    
 2. SFDX Data Move Utility (https://github.com/forcedotcom/SFDX-Data-Move-Utility)
    - This is the specific package/application that will allow us to quickly and easily move records over from Production to our Dev Org
