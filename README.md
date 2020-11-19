@@ -25,6 +25,6 @@ After installing both programs, or if you already have and skipped those steps, 
 After you navigate the folder you want this repo to be contained in, run the below
 - git clone https://github.com/Bgallahue/OrgStructure.git
 
-then open the OrgStructure folder in VS Code or whatever IDE you are using, like you typically would
+then open the OrgStructure folder you just cloned in VS Code or whatever IDE you are using, like you typically would
 
 The next steps will be contained in the "OrgGenerator.apex" file, which is contained in the scripts folder of OrgStructure/this repo. So open that.
