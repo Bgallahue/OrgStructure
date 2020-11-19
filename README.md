@@ -8,7 +8,7 @@ This repo is designed to move data to your own personal Dev Org sandbox as well 
    - This is the specific package/application that will allow us to quickly and easily move records over from Production to our Dev Org
  
 # Instructions to Install SFDX Data Move Utility (the below takes place in the terminal)
-**Step 1.** Clone the file locally. You can clone it into any folder, it does not matter, this is just our installation file: 
+**Step 1.** Clone the file locally with the below command. You can clone it into any folder, it does not matter, this is just our installation file: 
 - git clone https://github.com/forcedotcom/SFDX-Data-Move-Utility
 
 **Step 2.** Move into the folder we just created in step 1 with the below command:
