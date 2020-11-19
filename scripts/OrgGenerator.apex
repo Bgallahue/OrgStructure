@@ -6,15 +6,20 @@ now reference our new records (Step 5). Then lastly we are going to insert some 
 // Step 2. In the Terminal navigate (ie. cd scripts) to the "scripts" folder (this is assuming you are starting out in the current folder "Orgstructure")
 
 // Step 3. Run the Command: sfdx sfdmu:run --sourceusername PRODUCTIONUSERNAME --targetusername DEVORGUSERNAME
-// This will move the necessary data over to the Dev Hub using the SFDX Data Move Utility, the exports.json file in the scripts folder is what the SFDX Data Move Utility is referencing
 // EXAMPLE COMMAND: sfdx sfdmu:run --sourceusername evolveadmin@mycervello.com --targetusername evolveadmin@mycervello.com.BGDev
+// This will move the necessary data over to the Dev Hub using the SFDX Data Move Utility, the exports.json file in the scripts folder is what the SFDX Data Move Utility is referencing
+// Halfway through running, it will prompt you to respond y/n to a question as we are not bringing over a few unnecessary parent records, please respond with "y".
+// It only gives about 5 seconds before cancelling the process, kind of annoying but just respond "y"
 
 // Step 4. Deploy the EvolveDataGenerator class to your Dev Org
 
-// Step 5. Run the below in Anonymous Apex 
+// Step 5. Run the below in Anonymous Apex (You can highlight the below and do it right from VS Code, [How to do so](https://salesforce.stackexchange.com/questions/231715/how-to-run-apex-anonymous-code-from-visual-studio-code)))
 EvolveDataGenerator.necessaryDataSetup();
 
 // Step 6. Running the below in Anonymous Apex will give a baseline of sample data
+// Please review the method to see what was created but in summary, a Homeowner Account -> Contact -> Community Portal User -> Listing -> Booking
+// A Partner Account -> Contact -> Community Portal User
+// A Traveler Account (which is associated with the booking)
 EvolveDataGenerator.createBasicSampleData();
 
 // Step 7. In your Dev Org go to "Setup > Email Administration > Deliverability"
