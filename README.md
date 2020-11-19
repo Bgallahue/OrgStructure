@@ -8,17 +8,17 @@ This repo is designed to move data to your own personal Dev Org sandbox as well 
    - This is the specific package/application that will allow us to quickly and easily move records over from Production to our Dev Org
  
 # INSTRUCTIONS TO INSTALL SFDX DATA MOVE UTILITY, COMPLETE ALL 4 (If you haven't already done so)
-Step 1. Clone the git locally (you can do so in any folder, it does not matter), this is essentially our installation file: 
-$ git clone https://github.com/forcedotcom/SFDX-Data-Move-Utility
+**Step 1.** Clone the git locally (you can do so in any folder, it does not matter), this is essentially our installation file: 
+- $ git clone https://github.com/forcedotcom/SFDX-Data-Move-Utility
 
-Step 2. Move into the folder we just created in step 1 with the below command:
-$ cd SFDX-Data-Move-Utility
+**Step 2.** Move into the folder we just created in step 1 with the below command:
+- $ cd SFDX-Data-Move-Utility
 
-Step 3. If we correctly moved into the SFDX-Data-Move-Utility folder (and installed NPM), all we need to do is run the below command to install the package: 
-$ npm install
+**Step 3.** If we correctly moved into the SFDX-Data-Move-Utility folder (and installed NPM), all we need to do is run the below command to install the package: 
+- $ npm install
 
-Step 4. Link the Plugin to the Salesforce CLI: 
-$ sfdx plugins:link
+**Step 4.** Link the Plugin to the Salesforce CLI: 
+- $ sfdx plugins:link
 
 After installing both programs, or if you already have and skipped those steps, navigate to a folder like Documents. To do so the command "cd ~" will get you back to your user folder, type "ls" to show all the folders in your user folder, then move into whereever you want to put this repo (like documents)
 
