@@ -4,7 +4,11 @@
       "query": "SELECT readonly_false FROM Billing_Plan__c",
       "operation": "Insert"
     },
-
+    {
+      "query": "SELECT readonly_false FROM Billing_Group__c",
+      "operation": "Insert",
+      "externalId": "Name"
+    },
     {
       "query": "SELECT readonly_false FROM bt_stripe__Payment_Gateway__c WHERE Id = 'a3Xf2000000MCbREAW'",
       "operation": "Insert",
