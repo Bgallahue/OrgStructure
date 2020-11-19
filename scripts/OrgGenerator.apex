@@ -13,7 +13,7 @@ now reference our new records (Step 5). Then lastly we are going to insert some 
 
 // Step 4. Deploy the EvolveDataGenerator class to your Dev Org
 
-// Step 5. Run the below in Anonymous Apex (You can highlight the below and do it right from VS Code, [How to do so](https://salesforce.stackexchange.com/questions/231715/how-to-run-apex-anonymous-code-from-visual-studio-code)))
+// Step 5. Run the below in Anonymous Apex (You can highlight the below and do it right from VS Code https://salesforce.stackexchange.com/questions/231715/how-to-run-apex-anonymous-code-from-visual-studio-code))
 EvolveDataGenerator.necessaryDataSetup();
 
 // Step 6. Running the below in Anonymous Apex will give a baseline of sample data
