@@ -1,4 +1,4 @@
-The steps outline in OrgGenerator.apex are based upon having SFDX Date Move Utility installed. Use the below commands to install it if you already haven't
+The steps outline in OrgGenerator.apex are based upon having SFDX Data Move Utility installed. Use the below commands to install it if you already haven't
  (https://github.com/forcedotcom/SFDX-Data-Move-Utility for more details)
  
 # 1. Clone the git locally: 
