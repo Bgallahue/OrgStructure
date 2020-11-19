@@ -1,19 +1,28 @@
-// STEP 1. In the Terminal navigate (ie. cd scripts) to the "scripts" folder (this is assuming you are starting out in the current folder "Orgstructure")
+In the below steps we are first going to move necessary records over (like billing plans etc.), then we are going to modify any hardcoded Ids to 
+now reference our new records (Step 5). Then lastly we are going to insert some baseline data we can use for testing or for community work 
 
-// Step 2. Run the Command sfdx sfdmu:run --sourceusername PRODUCTIONUSERNAME --targetusername DEVHUBUSERNAME
-// This will move the necessary data over to the Dev Hub, the exports.json file in the scripts folder is what we are using
+// STEP 1. Autorize your Dev Org if you have not already done so
 
-// Step 3. Push the EvolveDataGenerator class to your Dev Org
+// Step 2. In the Terminal navigate (ie. cd scripts) to the "scripts" folder (this is assuming you are starting out in the current folder "Orgstructure")
 
-// Step 4. Run the below in Anonymous Apex
+// Step 3. Run the Command: sfdx sfdmu:run --sourceusername PRODUCTIONUSERNAME --targetusername DEVORGUSERNAME
+// This will move the necessary data over to the Dev Hub using the SFDX Data Move Utility, the exports.json file in the scripts folder is what the SFDX Data Move Utility is referencing
+// EXAMPLE COMMAND: sfdx sfdmu:run --sourceusername evolveadmin@mycervello.com --targetusername evolveadmin@mycervello.com.BGDev
+
+// Step 4. Deploy the EvolveDataGenerator class to your Dev Org
+
+// Step 5. Run the below in Anonymous Apex 
 EvolveDataGenerator.necessaryDataSetup();
 
-// Step 5. Running the below in Anonymous Apex will give a baseline of sample data
+// Step 6. Running the below in Anonymous Apex will give a baseline of sample data
 EvolveDataGenerator.createBasicSampleData();
 
-// Miscellaneous In Org Settings to Complete
-
-// Go to "Setup > Email Administration > Deliverability"
+// Step 7. In your Dev Org go to "Setup > Email Administration > Deliverability"
 // Change Access Level from "No Access" to "All Email"
-// Without this emails fired from Apex will generate an error
+// Without this setting modified emails fired from Apex will generate an error
+
+You are now done, feel free to delete this repo/folder. You should be cloning a new one each time you create a Dev Org (or if you want to just keep the same 
+repo and are comfortable diffing and merging changes then feel free to do so). The reason being is we might need to update the methods of EvolveDataGenerator or 
+another part of this process so that we keep it in line with Production and your Dev Org doesnt generate errors while you work in it
+
 
