@@ -11,7 +11,7 @@ This repo is designed to move data to your own personal Dev Org sandbox as well 
 **Step 1.** Clone the file locally. You can clone it into any folder, it does not matter, this is just our installation file: 
 - git clone https://github.com/forcedotcom/SFDX-Data-Move-Utility
 
-**Step 2.** Move into the folder (in the terminal) we just created in step 1 with the below command:
+**Step 2.** Move into the folder we just created in step 1 with the below command:
 - cd SFDX-Data-Move-Utility
 
 **Step 3.** If we correctly moved into the SFDX-Data-Move-Utility folder (and installed NPM), all we need to do is run the below command to install the package: 
