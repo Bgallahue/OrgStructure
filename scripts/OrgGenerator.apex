@@ -1,7 +1,7 @@
 In the below steps we are first going to move necessary records over (like billing plans etc.), then we are going to modify any hardcoded Ids to 
 now reference our new records (Step 5). Then lastly we are going to insert some baseline data we can use for testing or for community work 
 
-// STEP 1. Autorize your Dev Org if you have not already done so
+// STEP 1. Authorize your newly refreshed Dev Org if you have not already done so
 
 // Step 2. In the Terminal navigate (ie. cd scripts) to the "scripts" folder (this is assuming you are starting out in the current folder "Orgstructure")
 
