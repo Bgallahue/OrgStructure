@@ -205,19 +205,19 @@ public with sharing class EvolveDataGenerator {
         );
 
         contactsToInsert.add(
-            EvolveDataGenerator.sampleContact(acctsToInsert[0].Id, 'Bob', 'Homeowner', 'BobHomeowner@gmail.com.test')
+            EvolveDataGenerator.sampleContact(acctsToInsert[3].Id, 'Bob', 'Homeowner', 'BobHomeowner@gmail.com.test')
         );
 
         contactsToInsert.add(
-            EvolveDataGenerator.sampleContact(acctsToInsert[1].Id, 'Bob', 'Partner', 'BobPartner@gmail.com.test')
+            EvolveDataGenerator.sampleContact(acctsToInsert[4].Id, 'Bob', 'Partner', 'BobPartner@gmail.com.test')
         );
 
         contactsToInsert.add(
-            EvolveDataGenerator.sampleContact(acctsToInsert[0].Id, 'Larry', 'Homeowner', 'LarryHomeowner@gmail.com.test')
+            EvolveDataGenerator.sampleContact(acctsToInsert[6].Id, 'Larry', 'Homeowner', 'LarryHomeowner@gmail.com.test')
         );
 
         contactsToInsert.add(
-            EvolveDataGenerator.sampleContact(acctsToInsert[1].Id, 'Larry', 'Partner', 'LarryPartner@gmail.com.test')
+            EvolveDataGenerator.sampleContact(acctsToInsert[7].Id, 'Larry', 'Partner', 'LarryPartner@gmail.com.test')
         );
 
         insert contactsToInsert;
@@ -249,7 +249,7 @@ public with sharing class EvolveDataGenerator {
                 'Bob',
                 'Homeowner',
                 EvolveDataGenerator.PostOBHomeownerMPL_PROFId,
-                contactsToInsert[0].Id,
+                contactsToInsert[2].Id,
                 'BHomeOwner'
             )
         );
@@ -260,7 +260,7 @@ public with sharing class EvolveDataGenerator {
                 'Bob',
                 'Partner',
                 EvolveDataGenerator.PartnerMPL_PROFId,
-                contactsToInsert[1].Id,
+                contactsToInsert[3].Id,
                 'BPartner'
             )
         );
@@ -270,7 +270,7 @@ public with sharing class EvolveDataGenerator {
                 'Larry',
                 'Homeowner',
                 EvolveDataGenerator.PostOBHomeownerMPL_PROFId,
-                contactsToInsert[0].Id,
+                contactsToInsert[4].Id,
                 'LHomeOwner'
             )
         );
@@ -281,7 +281,7 @@ public with sharing class EvolveDataGenerator {
                 'Larry',
                 'Partner',
                 EvolveDataGenerator.PartnerMPL_PROFId,
-                contactsToInsert[1].Id,
+                contactsToInsert[5].Id,
                 'LPartner'
             )
         );
