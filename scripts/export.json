@@ -1,23 +1,39 @@
 {
-  "objects": [
-    {
-      "query": "SELECT readonly_false FROM Billing_Plan__c",
-      "operation": "Insert"
-    },
-    {
-      "query": "SELECT readonly_false FROM Billing_Group__c",
-      "operation": "Insert",
-      "externalId": "Name"
-    },
-    {
-      "query": "SELECT readonly_false FROM bt_stripe__Payment_Gateway__c WHERE Id = 'a3Xf2000000MCbREAW'",
-      "operation": "Insert",
-      "externalId": "Name"
-    },
-    {
-      "query": "SELECT readonly_false FROM bt_stripe__Connected_Account__c WHERE Id = 'a3Sf20000010egOEAQ'",
-      "operation": "Insert",
-      "externalId": "Id"
-    }
-  ]
+    "objects": [
+        {
+            "query": "SELECT readonly_false FROM Billing_Plan__c",
+            "operation": "Insert"
+        },
+        {
+            "query": "SELECT readonly_false FROM Billing_Group__c",
+            "operation": "Insert",
+            "externalId": "Name"
+        },
+
+        {
+            "query": "SELECT readonly_false FROM bt_stripe__Company__c WHERE Id = 'a3Qf2000002GcsxEAC'",
+            "operation": "Insert",
+            "externalId": "Id"
+        },
+        {
+            "query": "SELECT readonly_false FROM Account WHERE Id = '001f200001Uf11AAAR'",
+            "operation": "Insert",
+            "externalId": "Id"
+        },
+        {
+            "query": "SELECT readonly_false FROM bt_stripe__Payment_Gateway__c WHERE Id = 'a3Xf2000000MCbREAW'",
+            "operation": "Insert",
+            "externalId": "Name"
+        },
+        {
+            "query": "SELECT readonly_false FROM bt_stripe__Connected_Account__c WHERE Id = 'a3Sf20000010egOEAQ'",
+            "operation": "Insert",
+            "externalId": "Id"
+        },
+        {
+            "query": "SELECT readonly_false FROM ContentAsset",
+            "operation": "Insert"
+        }
+    ],
+    "promptOnMissingParentObjects": false
 }
