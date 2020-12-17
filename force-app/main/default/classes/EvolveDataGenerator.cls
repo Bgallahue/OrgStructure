@@ -173,6 +173,7 @@ public with sharing class EvolveDataGenerator {
     List<User> usersToInsert = new List<User>();
     List<Listing__c> listingsToInsert = new List<Listing__c>();
     List<Booking__c> bookingsToInsert = new List<Booking__c>();
+    List<PermissionSetAssignment> permSetAssignsToInsert = new List<PermissionSetAssignment>();
 
     acctsToInsert.add(
       EvolveDataGenerator.sampleAccount(
@@ -221,6 +222,18 @@ public with sharing class EvolveDataGenerator {
 
     insert contactsToInsert;
 
+    List<String> permSetNames = new List<String>{
+      'Community_Home_Owner_Test',
+      'Package_RingLead',
+      'Geopointe_Base_Permissions',
+      'Blackthorn_Payments_Community_User'
+    };
+    List<PermissionSet> permSetList = [
+      SELECT Id
+      FROM PermissionSet
+      WHERE Name IN :permSetNames
+    ];
+
     usersToInsert.add(
       EvolveDataGenerator.samplePortalUser(
         'JillHomeowner@gmail.com.test',
@@ -244,6 +257,17 @@ public with sharing class EvolveDataGenerator {
     );
 
     insert usersToInsert;
+
+    for (PermissionSet permSet : permSetList) {
+      permSetAssignsToInsert.add(
+        new PermissionSetAssignment(
+          AssigneeId = usersToInsert[0].Id,
+          PermissionSetId = permSet.Id
+        )
+      );
+    }
+
+    insert permSetAssignsToInsert;
 
     listingsToInsert.add(
       EvolveDataGenerator.sampleListing(

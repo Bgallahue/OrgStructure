@@ -1,4 +1,5 @@
 .forceignore
+package-lock.json
 **/MissingParentRecordsReport.csv
 **/logs
 **/sfdx-config.json

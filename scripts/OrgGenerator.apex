@@ -34,6 +34,8 @@ Step 8. In your Dev Org go to "Setup > Session Settings"
 Unselect "Enable secure and persistent browser caching to improve performance"
 Without this setting any components pushed to the org might not update in real time
 
+Step 9. Using the org browser, authorize Production, pull down ContentAssets, then push all into Dev Org
+
 You are now done, feel free to delete this repo/folder. You should be cloning a new one each time you create a Dev Org (or if you want to just keep the same 
 repo and are comfortable diffing and merging changes then feel free to do so). The reason being is we might need to update the methods of EvolveDataGenerator or 
 another part of this process so that we keep it in line with Production and your Dev Org doesnt generate errors while you work in it.
