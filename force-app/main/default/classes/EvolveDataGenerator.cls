@@ -300,6 +300,16 @@ public with sharing class EvolveDataGenerator {
         bookingsToInsert.add(
             EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Evolve', 'Booked', 25, 30, acctsToInsert[2].Id)
         );
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Evolve', 'Booked', -30, -25, acctsToInsert[2].Id)
+        );
+
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Owner', 'Booked', 15, 20, acctsToInsert[0].Id)
+        );
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Owner', 'Booked', -20, -15, acctsToInsert[0].Id)
+        );
 
         insert bookingsToInsert;
     }

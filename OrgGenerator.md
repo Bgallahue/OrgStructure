@@ -51,8 +51,16 @@ Without this setting any components pushed to the org might not update in real t
 
 **Step 9.**
 The SF Communities need to be published before they can be accessed by users
-"Setup > All Communities", then click on Builder for whatever community you need to login to
+"Setup > All Communities", then click on Builder for whatever community you need to login to and publish it
 
-You are now done, feel free to delete this repo/folder or keep it and just make sure
+**Step 10.**
+If you would like to have access to the Documentation app, run the following commands in the terminal (wait until each finishes deploying before deploying the next one)
+
+sfdx force:source:deploy -m LightningWebComponents:documentationHomePage
+sfdx force:source:deploy -m FlexiPage:Documentation_Home_Page
+sfdx force:source:deploy -m FlexiPage:CustomTab
+sfdx force:source:deploy -m CustomApplication:Documentation
+
+You are now done, feel free to delete this repo/folder or keep it and just make sure to pull down the latest data using git
 
 There is also some shortcut sObject creators (like is UnitTestFactory) in EvolveDataGenerator so feel free to use those and commit any that you might want to add to the Github repo
