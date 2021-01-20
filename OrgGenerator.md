@@ -16,7 +16,7 @@ Run the Command in the terminal:
 -   sfdx sfdmu:run --sourceusername PRODUCTIONUSERNAME --targetusername DEVORGUSERNAME
     EXAMPLE COMMAND: sfdx sfdmu:run --sourceusername bgallahue@mycervello.com.evr --targetusername bgallahue@mycervello.com.evr.BGDev
 
-This will move the necessary data over to the Dev Hub using the SFDX Data Move Utility, the exports.json file in the scripts folder is what the SFDX Data Move Utility is referencing
+This will move the necessary data over to the Dev Org using the SFDX Data Move Utility, the exports.json file in the scripts folder is what the SFDX Data Move Utility is referencing
 
 **Step 4.**
 Deploy the EvolveDataGenerator class to your Dev Org
@@ -24,42 +24,47 @@ Deploy the EvolveDataGenerator class to your Dev Org
 **Step 5.**
 Run the below method from EvolveDataGenerator in Anonymous Apex
 
--   You can highlight the below and do it right from VS Code https://salesforce.stackexchange.com/questions/231715/how-to-run-apex-anonymous-code-from-visual-studio-code
+-   You can highlight the below and do it right from VS Code, heres how (https://salesforce.stackexchange.com/questions/231715/how-to-run-apex-anonymous-code-from-visual-studio-code)
 
 EvolveDataGenerator.necessaryDataSetup();
 
 **Step 6.** Running the method from EvolveDataGenerator in Anonymous Apex will give a baseline of sample data
-Please review the method in the EvolveDataGenerator class to see exactly what was created but in summary:
-
--   a Homeowner Account -> Contact -> Community Portal User -> Listing -> Booking
--   A Partner Account -> Contact -> Community Portal User
--   A Traveler Account (which is associated with the booking)
+Please review the method in the EvolveDataGenerator class to see exactly what was created:
 
 EvolveDataGenerator.createBasicSampleData();
 
 **Step 7.**
 In your Dev Org go to "Setup > Deliverability"
 You can auto open your org with the following command in the terminal:
-sfdx force:org:open
-Change Access Level from "No Access" to "All Email"
+sfdx force:org:open --path "/lightning/setup/OrgEmailSettings/home"
+Change Access Level from "No Access" or "System Email Only" to "All Email"
 Without this setting updated, emails fired from Apex will generate an error
 
 **Step 8.**
-In your Dev Org go to "Setup > Session Settings"
+In your Dev Org go to "Setup > Session Settings" (sfdx force:org:open --path "/lightning/setup/SecuritySession/home" )
 Unselect "Enable secure and persistent browser caching to improve performance"
 Without this setting any components pushed to the org might not update in real time
 
 **Step 9.**
 The SF Communities need to be published before they can be accessed by users
+(sfdx force:org:open --path "/lightning/setup/SetupNetworks/home")
 "Setup > All Communities", then click on Builder for whatever community you need to login to and publish it
 
 **Step 10.**
 If you would like to have access to the Documentation app, run the following commands in the terminal (wait until each finishes deploying before deploying the next one)
 
-sfdx force:source:deploy -m LightningWebComponents:documentationHomePage
+sfdx force:source:deploy -m LightningComponentBundle:documentationHomePage
 sfdx force:source:deploy -m FlexiPage:Documentation_Home_Page
-sfdx force:source:deploy -m FlexiPage:CustomTab
+sfdx force:source:deploy -m CustomTab:Documentation_Home_Page
 sfdx force:source:deploy -m CustomApplication:Documentation
+
+Go to "Setup > App Manager" (sfdx force:org:open --path "/lightning/setup/NavigationMenus/home") and then Documenation app > Edit > User Profiles, add them all
+
+Go to "Setup > Profiles > System Administrator" (sfdx force:org:open --path "/lightning/setup/EnhancedProfiles/page?address=%2F00e600000015zZ3") and search for "Documenation Home Page" (there is a search bar right under the Profile name)
+
+-   then switch from "Tab Hidden" to "Default On"
+
+**FINAL**
 
 You are now done, feel free to delete this repo/folder or keep it and just make sure to pull down the latest data using git
 
