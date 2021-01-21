@@ -4,7 +4,7 @@
 -   Then lastly we are going to insert some baseline data we can use for testing or for community work
 
 **Step 1.**
-Authorize your newly refreshed Dev Org if you have not already done so
+Authorize your newly refreshed Dev Org if you have not already done so (check status of orgs with "sfdx force:org:list")
 
 **Step 2.**
 In the Terminal navigate (ie. cd scripts) to the "scripts" folder (this is assuming you are starting out in the current folder "Orgstructure")
@@ -58,9 +58,9 @@ sfdx force:source:deploy -m FlexiPage:Documentation_Home_Page
 sfdx force:source:deploy -m CustomTab:Documentation_Home_Page
 sfdx force:source:deploy -m CustomApplication:Documentation
 
-Go to "Setup > App Manager" (sfdx force:org:open --path "/lightning/setup/NavigationMenus/home") and then Documenation app > Edit > User Profiles, add them all
+Go to "Setup > App Manager" (sfdx force:org:open --path "/lightning/setup/NavigationMenus/home") and then Documentation app > Edit > User Profiles, add them all
 
-Go to "Setup > Profiles > System Administrator" (sfdx force:org:open --path "/lightning/setup/EnhancedProfiles/page?address=%2F00e600000015zZ3") and search for "Documenation Home Page" (there is a search bar right under the Profile name)
+Go to "Setup > Profiles > System Administrator" (sfdx force:org:open --path "/lightning/setup/EnhancedProfiles/page?address=%2F00e600000015zZ3") and search for "Documentation Home Page" (there is a search bar right under the Profile name)
 
 -   then switch from "Tab Hidden" to "Default On"
 

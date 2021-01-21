@@ -1,1 +1,15 @@
-[]
+[
+    {
+        "_allAttributes": null,
+        "_properties": null,
+        "_methods": null,
+        "file": "/Users/rgalla01/Documents/Extras/OrgStructure/force-app/main/default/lwc/documentationHomePage/documentationHomePage.js",
+        "metadata": {
+            "decorators": [],
+            "declarationLoc": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 70 } },
+            "classMembers": [],
+            "exports": [{ "type": "ExportDefaultDeclaration" }]
+        },
+        "updatedAt": "2020-12-07T20:01:55.778Z"
+    }
+]
