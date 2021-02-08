@@ -10,11 +10,10 @@ Authorize your newly refreshed Dev Org if you have not already done so (check st
 In the Terminal navigate (ie. cd scripts) to the "scripts" folder (this is assuming you are starting out in the current folder "Orgstructure")
 
 **Step 3.**
-
 Run the Command in the terminal:
 
 -   sfdx sfdmu:run --sourceusername PRODUCTIONUSERNAME --targetusername DEVORGUSERNAME
-    EXAMPLE COMMAND: sfdx sfdmu:run --sourceusername bgallahue@mycervello.com.evr --targetusername bgallahue@mycervello.com.evr.BGDev
+    EXAMPLE COMMAND: sfdx sfdmu:run --sourceusername bgallahue@mycervello.com.evr --targetusername bgallahue@mycervello.com.evr.testStrucc
 
 This will move the necessary data over to the Dev Org using the SFDX Data Move Utility, the exports.json file in the scripts folder is what the SFDX Data Move Utility is referencing
 
@@ -22,28 +21,28 @@ This will move the necessary data over to the Dev Org using the SFDX Data Move U
 Deploy the EvolveDataGenerator class to your Dev Org
 
 **Step 5.**
-Run the below method from EvolveDataGenerator in Anonymous Apex
+Run the below method from EvolveDataGenerator in ANONYMOUS APEX
 
 -   You can highlight the below and do it right from VS Code, heres how (https://salesforce.stackexchange.com/questions/231715/how-to-run-apex-anonymous-code-from-visual-studio-code)
 
 EvolveDataGenerator.necessaryDataSetup();
 
-**Step 6.** Running the method from EvolveDataGenerator in Anonymous Apex will give a baseline of sample data
+**Step 6.** Running the method from EvolveDataGenerator in ANONYMOUS APEX will give a baseline of sample data
 Please review the method in the EvolveDataGenerator class to see exactly what was created:
 
 EvolveDataGenerator.createBasicSampleData();
 
 **Step 7.**
 In your Dev Org go to "Setup > Deliverability"
-You can auto open your org with the following command in the terminal:
+You can auto open your org with the following command in the TERMINAL:
 sfdx force:org:open --path "/lightning/setup/OrgEmailSettings/home"
 Change Access Level from "No Access" or "System Email Only" to "All Email"
 Without this setting updated, emails fired from Apex will generate an error
 
 **Step 8.**
 In your Dev Org go to "Setup > Session Settings" (sfdx force:org:open --path "/lightning/setup/SecuritySession/home" )
-Unselect "Enable secure and persistent browser caching to improve performance"
-Without this setting any components pushed to the org might not update in real time
+UNSELECT "Enable secure and persistent browser caching to improve performance"
+Without this setting any components pushed to the org will not
 
 **Step 9.**
 The SF Communities need to be published before they can be accessed by users
@@ -51,7 +50,7 @@ The SF Communities need to be published before they can be accessed by users
 "Setup > All Communities", then click on Builder for whatever community you need to login to and publish it
 
 **Step 10.**
-If you would like to have access to the Documentation app, run the following commands in the terminal (wait until each finishes deploying before deploying the next one)
+If you would like to have access to the Documentation app, run the following commands in the TERMINAL (wait until each finishes deploying before deploying the next one)
 
 sfdx force:source:deploy -m LightningComponentBundle:documentationHomePage
 sfdx force:source:deploy -m FlexiPage:Documentation_Home_Page

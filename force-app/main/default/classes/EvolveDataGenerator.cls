@@ -306,7 +306,6 @@ public with sharing class EvolveDataGenerator {
         listingsToInsert.add(EvolveDataGenerator.sampleListing(Listing_Listing_RTId, acctsToInsert[0].Id));
         listingsToInsert.add(EvolveDataGenerator.sampleListing(Listing_Listing_RTId, acctsToInsert[3].Id));
         listingsToInsert.add(EvolveDataGenerator.sampleListing(Listing_Listing_RTId, acctsToInsert[6].Id));
-        System.debug('Listings=> ' + listingsToInsert);
         insert listingsToInsert;
 
         listingContactRolesToInsert.add(
