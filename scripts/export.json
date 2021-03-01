@@ -21,7 +21,7 @@
             "externalId": "Id"
         },
         {
-            "query": "SELECT readonly_false FROM bt_stripe__Payment_Gateway__c WHERE Id = 'a3Xf2000000MCbREAW'",
+            "query": "SELECT readonly_false FROM bt_stripe__Payment_Gateway__c WHERE bt_stripe__Default__c = true",
             "operation": "Insert",
             "externalId": "Name"
         },

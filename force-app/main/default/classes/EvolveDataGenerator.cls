@@ -60,6 +60,12 @@ public with sharing class EvolveDataGenerator {
 
     public static Id PartnerMPL_PROFId = [SELECT ID, Name FROM Profile WHERE Name = 'Evolve Partner MPL' LIMIT 1].Id;
 
+    public static List<bt_stripe__Payment_Gateway__c> defaultGateway = [
+        SELECT Id, bt_stripe__Test_Mode__c, bt_stripe__Stripe_User_Email__c
+        FROM bt_stripe__Payment_Gateway__c
+        WHERE bt_stripe__Default__c = TRUE
+    ];
+
     public static void necessaryDataSetup() {
         Map<String, Billing_Plan__c> bPlanMap = new Map<String, Billing_Plan__c>();
         for (Billing_Plan__c bp : [SELECT Id, Name FROM Billing_Plan__c]) {
@@ -162,8 +168,15 @@ public with sharing class EvolveDataGenerator {
         return result;
     }
 
-    // SHORTCUT DATA CREATORS
-    public static void createBasicSampleData() {
+    public class createBasicSampleData implements Queueable {
+        public void execute(QueueableContext context) {
+            EvolveDataGenerator.jillDataVertical();
+            EvolveDataGenerator.bobDataVertical();
+            EvolveDataGenerator.larryDataVertical();
+        }
+    }
+
+    public static void jillDataVertical() {
         List<Account> acctsToInsert = new List<Account>();
         List<Contact> contactsToInsert = new List<Contact>();
         List<User> usersToInsert = new List<User>();
@@ -181,29 +194,6 @@ public with sharing class EvolveDataGenerator {
         acctsToInsert.add(
             EvolveDataGenerator.samplePersonAccount(Account_Traveler_RTId, 'Joe', 'Traveler', 'JoeTraveler@gmail.com.test')
         );
-
-        acctsToInsert.add(
-            EvolveDataGenerator.sampleAccount(Account_HomeOwner_RTId, 'Bob Homeowner', 'BobHomeowner@gmail.com.test')
-        );
-
-        acctsToInsert.add(EvolveDataGenerator.sampleAccount(Account_Partner_RTId, 'Bob Partner', 'BobPartner@gmail.com.test'));
-        acctsToInsert[1].Business_Type__c = 'Full On-site Services';
-
-        acctsToInsert.add(
-            EvolveDataGenerator.samplePersonAccount(Account_Traveler_RTId, 'Jack', 'Traveler', 'JackTraveler@gmail.com.test')
-        );
-        acctsToInsert.add(
-            EvolveDataGenerator.sampleAccount(Account_HomeOwner_RTId, 'Larry Homeowner', 'LarryHomeowner@gmail.com.test')
-        );
-
-        acctsToInsert.add(
-            EvolveDataGenerator.sampleAccount(Account_Partner_RTId, 'Larry Partner', 'LarryPartner@gmail.com.test')
-        );
-        acctsToInsert[1].Business_Type__c = 'Full On-site Services';
-
-        acctsToInsert.add(
-            EvolveDataGenerator.samplePersonAccount(Account_Traveler_RTId, 'Jared', 'Traveler', 'JaredTraveler@gmail.com.test')
-        );
         insert acctsToInsert;
 
         contactsToInsert.add(
@@ -212,22 +202,6 @@ public with sharing class EvolveDataGenerator {
 
         contactsToInsert.add(
             EvolveDataGenerator.sampleContact(acctsToInsert[1].Id, 'Jill', 'Partner', 'JillPartner@gmail.com.test')
-        );
-
-        contactsToInsert.add(
-            EvolveDataGenerator.sampleContact(acctsToInsert[3].Id, 'Bob', 'Homeowner', 'BobHomeowner@gmail.com.test')
-        );
-
-        contactsToInsert.add(
-            EvolveDataGenerator.sampleContact(acctsToInsert[4].Id, 'Bob', 'Partner', 'BobPartner@gmail.com.test')
-        );
-
-        contactsToInsert.add(
-            EvolveDataGenerator.sampleContact(acctsToInsert[6].Id, 'Larry', 'Homeowner', 'LarryHomeowner@gmail.com.test')
-        );
-
-        contactsToInsert.add(
-            EvolveDataGenerator.sampleContact(acctsToInsert[7].Id, 'Larry', 'Partner', 'LarryPartner@gmail.com.test')
         );
 
         insert contactsToInsert;
@@ -253,13 +227,76 @@ public with sharing class EvolveDataGenerator {
                 'JPartner'
             )
         );
+        insert usersToInsert;
+
+        linkPermissionSets(new List<Id>{ usersToInsert[0].Id }, new List<Id>{ usersToInsert[1].Id });
+
+        listingsToInsert.add(EvolveDataGenerator.sampleListing(Listing_Listing_RTId, acctsToInsert[0].Id));
+        insert listingsToInsert;
+
+        listingContactRolesToInsert.add(
+            EvolveDataGenerator.sampleListingContactRole(listingsToInsert[0].Id, contactsToInsert[0].Id, 'Property Owner')
+        );
+        listingContactRolesToInsert.add(
+            EvolveDataGenerator.sampleListingContactRole(listingsToInsert[0].Id, contactsToInsert[1].Id, 'Partner')
+        );
+
+        insert listingContactRolesToInsert;
+
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Evolve', 'Booked', 25, 30, acctsToInsert[2].Id)
+        );
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Evolve', 'Booked', -30, -25, acctsToInsert[2].Id)
+        );
+
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Owner', 'Booked', 15, 20, acctsToInsert[0].Id)
+        );
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Owner', 'Booked', -20, -15, acctsToInsert[0].Id)
+        );
+
+        insert bookingsToInsert;
+    }
+
+    public static void bobDataVertical() {
+        List<Account> acctsToInsert = new List<Account>();
+        List<Contact> contactsToInsert = new List<Contact>();
+        List<User> usersToInsert = new List<User>();
+        List<Listing__c> listingsToInsert = new List<Listing__c>();
+        List<Booking__c> bookingsToInsert = new List<Booking__c>();
+        List<ListingContactRole__c> listingContactRolesToInsert = new List<ListingContactRole__c>();
+
+        acctsToInsert.add(
+            EvolveDataGenerator.sampleAccount(Account_HomeOwner_RTId, 'Bob Homeowner', 'BobHomeowner@gmail.com.test')
+        );
+
+        acctsToInsert.add(EvolveDataGenerator.sampleAccount(Account_Partner_RTId, 'Bob Partner', 'BobPartner@gmail.com.test'));
+        acctsToInsert[1].Business_Type__c = 'Full On-site Services';
+
+        acctsToInsert.add(
+            EvolveDataGenerator.samplePersonAccount(Account_Traveler_RTId, 'Jack', 'Traveler', 'JackTraveler@gmail.com.test')
+        );
+        insert acctsToInsert;
+
+        contactsToInsert.add(
+            EvolveDataGenerator.sampleContact(acctsToInsert[0].Id, 'Bob', 'Homeowner', 'BobHomeowner@gmail.com.test')
+        );
+
+        contactsToInsert.add(
+            EvolveDataGenerator.sampleContact(acctsToInsert[1].Id, 'Bob', 'Partner', 'BobPartner@gmail.com.test')
+        );
+
+        insert contactsToInsert;
+
         usersToInsert.add(
             EvolveDataGenerator.samplePortalUser(
                 'BobHomeowner@gmail.com.test',
                 'Bob',
                 'Homeowner',
                 EvolveDataGenerator.PostOBHomeownerMPL_PROFId,
-                contactsToInsert[2].Id,
+                contactsToInsert[0].Id,
                 'BHomeOwner'
             )
         );
@@ -270,17 +307,83 @@ public with sharing class EvolveDataGenerator {
                 'Bob',
                 'Partner',
                 EvolveDataGenerator.PartnerMPL_PROFId,
-                contactsToInsert[3].Id,
+                contactsToInsert[1].Id,
                 'BPartner'
             )
         );
+
+        insert usersToInsert;
+
+        linkPermissionSets(new List<Id>{ usersToInsert[0].Id }, new List<Id>{ usersToInsert[1].Id });
+
+        listingsToInsert.add(EvolveDataGenerator.sampleListing(Listing_Listing_RTId, acctsToInsert[0].Id));
+        insert listingsToInsert;
+
+        listingContactRolesToInsert.add(
+            EvolveDataGenerator.sampleListingContactRole(listingsToInsert[0].Id, contactsToInsert[0].Id, 'Property Owner')
+        );
+        listingContactRolesToInsert.add(
+            EvolveDataGenerator.sampleListingContactRole(listingsToInsert[0].Id, contactsToInsert[1].Id, 'Partner')
+        );
+
+        insert listingContactRolesToInsert;
+
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Evolve', 'Booked', 25, 30, acctsToInsert[2].Id)
+        );
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Evolve', 'Booked', -30, -25, acctsToInsert[2].Id)
+        );
+
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Owner', 'Booked', 15, 20, acctsToInsert[0].Id)
+        );
+        bookingsToInsert.add(
+            EvolveDataGenerator.sampleBooking(listingsToInsert[0].Id, 'Owner', 'Booked', -20, -15, acctsToInsert[0].Id)
+        );
+
+        insert bookingsToInsert;
+    }
+
+    public static void larryDataVertical() {
+        List<Account> acctsToInsert = new List<Account>();
+        List<Contact> contactsToInsert = new List<Contact>();
+        List<User> usersToInsert = new List<User>();
+        List<Listing__c> listingsToInsert = new List<Listing__c>();
+        List<Booking__c> bookingsToInsert = new List<Booking__c>();
+        List<ListingContactRole__c> listingContactRolesToInsert = new List<ListingContactRole__c>();
+
+        acctsToInsert.add(
+            EvolveDataGenerator.sampleAccount(Account_HomeOwner_RTId, 'Larry Homeowner', 'LarryHomeowner@gmail.com.test')
+        );
+
+        acctsToInsert.add(
+            EvolveDataGenerator.sampleAccount(Account_Partner_RTId, 'Larry Partner', 'LarryPartner@gmail.com.test')
+        );
+        acctsToInsert[1].Business_Type__c = 'Full On-site Services';
+
+        acctsToInsert.add(
+            EvolveDataGenerator.samplePersonAccount(Account_Traveler_RTId, 'Jared', 'Traveler', 'JaredTraveler@gmail.com.test')
+        );
+        insert acctsToInsert;
+
+        contactsToInsert.add(
+            EvolveDataGenerator.sampleContact(acctsToInsert[0].Id, 'Larry', 'Homeowner', 'LarryHomeowner@gmail.com.test')
+        );
+
+        contactsToInsert.add(
+            EvolveDataGenerator.sampleContact(acctsToInsert[1].Id, 'Larry', 'Partner', 'LarryPartner@gmail.com.test')
+        );
+
+        insert contactsToInsert;
+
         usersToInsert.add(
             EvolveDataGenerator.samplePortalUser(
                 'LarryHomeowner@gmail.com.test',
                 'Larry',
                 'Homeowner',
                 EvolveDataGenerator.PostOBHomeownerMPL_PROFId,
-                contactsToInsert[4].Id,
+                contactsToInsert[0].Id,
                 'LHomeOwner'
             )
         );
@@ -291,21 +394,16 @@ public with sharing class EvolveDataGenerator {
                 'Larry',
                 'Partner',
                 EvolveDataGenerator.PartnerMPL_PROFId,
-                contactsToInsert[5].Id,
+                contactsToInsert[1].Id,
                 'LPartner'
             )
         );
 
         insert usersToInsert;
 
-        linkPermissionSets(
-            new List<Id>{ usersToInsert[0].Id, usersToInsert[2].Id, usersToInsert[4].Id },
-            new List<Id>{ usersToInsert[1].Id, usersToInsert[3].Id, usersToInsert[5].Id }
-        );
+        linkPermissionSets(new List<Id>{ usersToInsert[0].Id }, new List<Id>{ usersToInsert[1].Id });
 
         listingsToInsert.add(EvolveDataGenerator.sampleListing(Listing_Listing_RTId, acctsToInsert[0].Id));
-        listingsToInsert.add(EvolveDataGenerator.sampleListing(Listing_Listing_RTId, acctsToInsert[3].Id));
-        listingsToInsert.add(EvolveDataGenerator.sampleListing(Listing_Listing_RTId, acctsToInsert[6].Id));
         insert listingsToInsert;
 
         listingContactRolesToInsert.add(
@@ -314,18 +412,7 @@ public with sharing class EvolveDataGenerator {
         listingContactRolesToInsert.add(
             EvolveDataGenerator.sampleListingContactRole(listingsToInsert[0].Id, contactsToInsert[1].Id, 'Partner')
         );
-        listingContactRolesToInsert.add(
-            EvolveDataGenerator.sampleListingContactRole(listingsToInsert[1].Id, contactsToInsert[2].Id, 'Property Owner')
-        );
-        listingContactRolesToInsert.add(
-            EvolveDataGenerator.sampleListingContactRole(listingsToInsert[1].Id, contactsToInsert[3].Id, 'Partner')
-        );
-        listingContactRolesToInsert.add(
-            EvolveDataGenerator.sampleListingContactRole(listingsToInsert[2].Id, contactsToInsert[4].Id, 'Property Owner')
-        );
-        listingContactRolesToInsert.add(
-            EvolveDataGenerator.sampleListingContactRole(listingsToInsert[2].Id, contactsToInsert[5].Id, 'Partner')
-        );
+
         insert listingContactRolesToInsert;
 
         bookingsToInsert.add(

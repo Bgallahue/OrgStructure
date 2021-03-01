@@ -37,7 +37,7 @@ EvolveDataGenerator.necessaryDataSetup();
 **Step 7.** Running the method from EvolveDataGenerator in ANONYMOUS APEX will give a baseline of sample data
 Please review the method in the EvolveDataGenerator class to see exactly what was created:
 
-EvolveDataGenerator.createBasicSampleData();
+System.enqueueJob(new EvolveDataGenerator.createBasicSampleData());
 
 **Step 8.**
 In your Dev Org go to "Setup > Deliverability"
