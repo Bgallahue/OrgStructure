@@ -41,20 +41,27 @@ System.enqueueJob(new EvolveDataGenerator.createBasicSampleData());
 
 **Step 8.**
 In your Dev Org go to "Setup > Deliverability"
-You can auto open your org with the following command in the TERMINAL:
-sfdx force:org:open --path "/lightning/setup/OrgEmailSettings/home"
+You can auto open your org to that page with the following terminal command
+
+TERMINAL COMMAND: sfdx force:org:open --path "/lightning/setup/OrgEmailSettings/home"
+
 Change Access Level from "No Access" or "System Email Only" to "All Email"
 Without this setting updated, emails fired from Apex will generate an error
 
 **Step 9.**
-In your Dev Org go to "Setup > Session Settings" (sfdx force:org:open --path "/lightning/setup/SecuritySession/home" )
+In your Dev Org go to "Setup > Session Settings"
+
+TERMINAL COMMAND: sfdx force:org:open --path "/lightning/setup/SecuritySession/home"
+
 UNSELECT "Enable secure and persistent browser caching to improve performance"
 Without this setting any components pushed to the org will not
 
 **Step 10.**
-The SF Communities need to be published before they can be accessed by users
-(sfdx force:org:open --path "/lightning/setup/SetupNetworks/home")
-"Setup > All Communities", then click on Builder for whatever community you need to login to and publish it
+The SF Communities need to be published before they can be accessed by users, go to "Setup > All Pages"
+
+TERMINAL COMMAND: sfdx force:org:open --path "/lightning/setup/SetupNetworks/home"
+
+Then click on Builder for whatever community you need to login to and publish it
 
 **Step 11.**
 If you would like to have access to the Documentation app, run the following commands in the TERMINAL (wait until each finishes deploying before deploying the next one)
