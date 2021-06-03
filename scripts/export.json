@@ -29,10 +29,6 @@
             "query": "SELECT readonly_false FROM bt_stripe__Connected_Account__c WHERE Id = 'a3Sf20000010egOEAQ'",
             "operation": "Insert",
             "externalId": "Id"
-        },
-        {
-            "query": "SELECT readonly_false FROM ContentAsset",
-            "operation": "Insert"
         }
     ],
     "promptOnMissingParentObjects": false
