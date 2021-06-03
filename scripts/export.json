@@ -26,7 +26,7 @@
             "externalId": "Name"
         },
         {
-            "query": "SELECT readonly_false FROM bt_stripe__Connected_Account__c WHERE Id = 'a3Sf20000010egOEAQ'",
+            "query": "SELECT readonly_false FROM bt_stripe__Connected_Account__c WHERE Id = 'a3Sf20000010egOEAQ' OR Id = 'a3Sf20000010egOEAQ' OR Id ='a3S4P000003McCqUAK'",
             "operation": "Insert",
             "externalId": "Id"
         }

@@ -63,20 +63,6 @@ TERMINAL COMMAND: sfdx force:org:open --path "/lightning/setup/SetupNetworks/hom
 
 Then click on Builder for whatever community you need to login to and publish it
 
-**Step 11.**
-If you would like to have access to the Documentation app, run the following commands in the TERMINAL (wait until each finishes deploying before deploying the next one)
-
-sfdx force:source:deploy -m LightningComponentBundle:documentationHomePage
-sfdx force:source:deploy -m FlexiPage:Documentation_Home_Page
-sfdx force:source:deploy -m CustomTab:Documentation_Home_Page
-sfdx force:source:deploy -m CustomApplication:Documentation
-
-Go to "Setup > App Manager" (sfdx force:org:open --path "/lightning/setup/NavigationMenus/home") and then Documentation app > Edit > User Profiles, add them all
-
-Go to "Setup > Profiles > System Administrator" (sfdx force:org:open --path "/lightning/setup/EnhancedProfiles/page?address=%2F00e600000015zZ3") and search for "Documentation Home Page" (there is a search bar right under the Profile name)
-
--   then switch from "Tab Hidden" to "Default On"
-
 **FINAL**
 
 You are now done, feel free to delete this repo/folder or keep it and just make sure to pull down the latest data using git pull (Step 1)

@@ -6,8 +6,9 @@ public with sharing class EvolveDataGenerator {
         'Billing_Plan_1_0_Flexbile__c' => 'Immediate 1.0 - Flexible',
         'Billing_Plan_1_0_Strict__c' => 'Immediate 1.0 - Strict',
         'Billing_Plan_AZ__c' => 'Check-In AZ',
-        'Current_Remitted_Default__c' => 'Check-In 2.0 Remitted New',
-        'Current_Default__c' => 'Check-In 2.0 New'
+        'Current_Remitted_Default__c' => 'Check-In 2.20 Remitted',
+        'Nevada_Billing_Plan__c' => 'Check-In 2.20 (Nevada)',
+        'Current_Default__c' => 'Check-In 2.20'
     };
 
     public static Map<String, List<String>> permSetMap = new Map<String, List<String>>{
