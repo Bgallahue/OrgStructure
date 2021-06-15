@@ -207,6 +207,10 @@ public with sharing class EvolveDataGenerator {
 
         insert contactsToInsert;
 
+        acctsToInsert[0].Primary_Billing_Contact__c = contactsToInsert[0].Id;
+        acctsToInsert[1].Primary_Billing_Contact__c = contactsToInsert[1].Id;
+        update acctsToInsert;
+
         usersToInsert.add(
             EvolveDataGenerator.samplePortalUser(
                 'JillHomeowner@gmail.com.test',
@@ -290,6 +294,10 @@ public with sharing class EvolveDataGenerator {
         );
 
         insert contactsToInsert;
+
+        acctsToInsert[0].Primary_Billing_Contact__c = contactsToInsert[0].Id;
+        acctsToInsert[1].Primary_Billing_Contact__c = contactsToInsert[1].Id;
+        update acctsToInsert;
 
         usersToInsert.add(
             EvolveDataGenerator.samplePortalUser(
@@ -378,6 +386,10 @@ public with sharing class EvolveDataGenerator {
 
         insert contactsToInsert;
 
+        acctsToInsert[0].Primary_Billing_Contact__c = contactsToInsert[0].Id;
+        acctsToInsert[1].Primary_Billing_Contact__c = contactsToInsert[1].Id;
+        update acctsToInsert;
+
         usersToInsert.add(
             EvolveDataGenerator.samplePortalUser(
                 'LarryHomeowner@gmail.com.test',
@@ -444,11 +456,13 @@ public with sharing class EvolveDataGenerator {
             if (homeownerPerm.contains(permSet.Name)) {
                 for (Id ho : homeownerUsers) {
                     permSetAssignsToInsert.add(new PermissionSetAssignment(AssigneeId = ho, PermissionSetId = permSet.Id));
+                    System.setPassword(ho, 'Community_Password_123');
                 }
             }
             if (partnerPerm.contains(permSet.Name)) {
                 for (Id p : partnerUsers) {
                     permSetAssignsToInsert.add(new PermissionSetAssignment(AssigneeId = p, PermissionSetId = permSet.Id));
+                    System.setPassword(p, 'Community_Password_123');
                 }
             }
         }

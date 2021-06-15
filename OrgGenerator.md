@@ -63,6 +63,9 @@ TERMINAL COMMAND: sfdx force:org:open --path "/lightning/setup/SetupNetworks/hom
 
 Then click on Builder for whatever community you need to login to and publish it
 
+**Notes**
+All Homeowner and Partners Community Logins have a password of Community_Password_123 if you need to log directly in to the Community.
+
 **FINAL**
 
 You are now done, feel free to delete this repo/folder or keep it and just make sure to pull down the latest data using git pull (Step 1)
